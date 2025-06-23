@@ -106,8 +106,8 @@ Make sure MongoDB is running locally or use a remote Mongo URI.
 
 ---
 
-## Live Demo
+## Live Deployment
 
-🔗The API is also hosted on Vercel: ➡ [LMS_BACKEND_API] (https://lmsbackendapi.vercel.app/api/books)
+🔗 The API is also hosted on **Vercel**: [**LMS\_BACKEND\_API**](https://lmsbackendapi.vercel.app/api/books)
 
 ---
