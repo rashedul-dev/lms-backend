@@ -11,12 +11,12 @@ app.use("/api/borrow", borrowRoutes);
 
 // Root
 app.get("/", (req: Request, res: Response) => {
-  res.send("Welcome from Library Management API");
+  res.send(`Welcome from Library Management System`);
 });
 
 // 404 Not Found Handler
 app.use((req: Request, res: Response) => {
-  res.status(404).json({ message: "Sorry! Route not found" });
+  res.status(404).json({ message: "Invalid route" });
 });
 
 // ✅ Error Handler (MUST go at the end)
