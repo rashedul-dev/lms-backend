@@ -26,7 +26,7 @@ borrowRoutes.post(
   }
 );
 
-// EMPLEMENTING AGGREGATION
+// EMPLEMENTING AGGREGATION 
 
 borrowRoutes.get(
   "/",
@@ -41,9 +41,9 @@ borrowRoutes.get(
         },
         {
           $lookup: {
-            from: "books",
-            localField: "_id",
-            foreignField: "_id",
+            from: "books", 
+            localField: "_id", 
+            foreignField: "_id", 
             as: "bookDetails",
           },
         },
@@ -73,7 +73,7 @@ borrowRoutes.get(
   }
 );
 
-// GLOBAL ERROR HANDLER
+// GLOBAL ERROR HANDLER 
 borrowRoutes.use(
   (error: any, req: Request, res: Response, next: NextFunction) => {
     if (error.name === "ValidationError") {
