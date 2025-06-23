@@ -44,8 +44,8 @@ npm install
 Create a `.env` file in the root directory:
 
 ```env
-NODE_ENV=development
-PORT=5000
+NODE_ENV= development
+PORT= 5000
 MONGO_URI= mongodb+srv://<db_username>:<db_password>@cluster0.ds2xf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 ```
 
@@ -106,8 +106,8 @@ Make sure MongoDB is running locally or use a remote Mongo URI.
 
 ---
 
-## Live Demo
+## Live Deployment
 
-🔗The API is also hosted on vercel: ➡ [LMS_BACKEND_API](https://lmsbackendapi.vercel.app/api/books)
+🔗 The API is also hosted on **Vercel**: [**LMS\_BACKEND\_API**](https://lmsbackendapi.vercel.app/api/books)
 
 ---
