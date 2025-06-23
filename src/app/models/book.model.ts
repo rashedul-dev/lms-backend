@@ -1,5 +1,9 @@
-import { Schema, model } from "mongoose";
+import { Model, Schema, model } from "mongoose";
 import { IBook } from "../interafaces/book.interface";
+
+interface BookModel extends Model<IBook> {
+  borrowBook(bookId: string, quantity: number): Promise<void>;
+}
 
 const bookSchema = new Schema<IBook>(
   {
@@ -28,7 +32,7 @@ const bookSchema = new Schema<IBook>(
         message: "Copies must be a positive number",
       },
     },
-    avaiable: { type: Boolean, default: true },
+    available: { type: Boolean, default: true },
   },
   {
     versionKey: false,
@@ -36,4 +40,27 @@ const bookSchema = new Schema<IBook>(
   }
 );
 
-export const BookModel = model<IBook>("Book", bookSchema);
+// 🔥 Static method
+bookSchema.statics.borrowBook = async function (
+  bookId: string,
+  quantity: number
+): Promise<void> {
+  const book = await this.findById(bookId);
+  // console.log(book);
+  if (!book) {
+    throw new Error("Book not found");
+  }
+
+  if (book.copies < quantity) {
+    throw new Error("Not enough copies available");
+  }
+
+  book.copies -= quantity;
+  if (book.copies === 0) {
+    book.available = false;
+  }
+
+  await book.save();
+};
+
+export const Book = model<IBook, BookModel>("Book", bookSchema);

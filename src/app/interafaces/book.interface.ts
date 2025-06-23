@@ -1,9 +1,14 @@
-export interface IBook {
+import { Document, Model } from "mongoose";
+
+export interface IBook extends Document {
   title: string;
   author: string;
   genre: string;
   isbn: string;
   description: string;
   copies: number;
-  avaiable: boolean;
+  available: boolean;
 }
+// export interface IBookModel extends Model<IBook> {
+//   borrowBook(book: IBook, quantity: number): Promise<void>;
+// }
