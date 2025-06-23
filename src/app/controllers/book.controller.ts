@@ -32,20 +32,14 @@ booksRoutes.get(
         sort = "asc",
         limit = "10",
       } = req.query;
-      // console.log('sort', sort);
-      // console.log('sortBy', sortBy);
 
-      // console.log(filter);
       const query: any = {};
       if (filter) {
         query.genre = filter;
-        // console.log('query', query);
-        // console.log('filter', filter);
       }
 
       const sortOrder = sort === "desc" ? -1 : 1;
 
-      // const books = await Book.find({ genre: filter })
       const books = await Book.find(query)
         .sort({ [sortBy as string]: sortOrder })
         .limit(Number(limit));
