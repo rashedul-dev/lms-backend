@@ -1,1 +1,1 @@
-# mango-server-with-mongoose
+# Library Management API with Express, TypeScript & MongoDB
