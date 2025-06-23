@@ -2,7 +2,7 @@ import express, { NextFunction, Request, Response } from "express";
 import { Book } from "../models/book.model";
 export const booksRoutes = express.Router();
 
-// create book
+// FOR CREATE BOOK
 booksRoutes.post(
   "/",
   async (req: Request, res: Response, next: NextFunction) => {
@@ -21,7 +21,7 @@ booksRoutes.post(
   }
 );
 
-// get all books
+// FOR GET ALL BOOK
 booksRoutes.get(
   "/",
   async (req: Request, res: Response, next: NextFunction) => {
@@ -55,7 +55,7 @@ booksRoutes.get(
   }
 );
 
-// get book by id
+// GET BOOK BY ID
 booksRoutes.get(
   "/:bookId",
   async (req: Request, res: Response, next: NextFunction) => {
@@ -82,7 +82,7 @@ booksRoutes.get(
   }
 );
 
-// updating book
+// FOR UPDATING BOOKS
 booksRoutes.patch(
   "/:bookId",
   async (req: Request, res: Response, next: NextFunction) => {
@@ -105,7 +105,7 @@ booksRoutes.patch(
   }
 );
 
-// Deleting Book
+// FOR DELETING BOOK
 booksRoutes.delete(
   "/:bookId",
   async (req: Request, res: Response, next: NextFunction) => {
@@ -124,7 +124,7 @@ booksRoutes.delete(
   }
 );
 
-// global error handler (last e)
+// GLOBAL ERROR HANDLER
 booksRoutes.use(
   (error: any, req: Request, res: Response, next: NextFunction) => {
     if (error.name === "ValidationError") {
@@ -139,7 +139,7 @@ booksRoutes.use(
       });
     }
 
-    // other errors
+    // FOR HANDELING OTHER ERRORS
     res.status(400).json({
       message: error.message || "Something went wrong",
       success: false,

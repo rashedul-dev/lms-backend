@@ -4,7 +4,7 @@ import { BorrowDetails } from "../models/borrow.model";
 
 export const borrowRoutes = express.Router();
 
-// borrow a book
+// FOR BORROWING A BOOK
 borrowRoutes.post(
   "/",
   async (req: Request, res: Response, next: NextFunction): Promise<any> => {
@@ -26,7 +26,7 @@ borrowRoutes.post(
   }
 );
 
-// aggregation
+// EMPLEMENTING AGGREGATION
 
 borrowRoutes.get(
   "/",
@@ -41,9 +41,9 @@ borrowRoutes.get(
         },
         {
           $lookup: {
-            from: "books", // the actual MongoDB collection name
-            localField: "_id", // _id here is from the group stage, i.e. book._id
-            foreignField: "_id", // matches the actual Book _id in books collection
+            from: "books",
+            localField: "_id",
+            foreignField: "_id",
             as: "bookDetails",
           },
         },
@@ -73,7 +73,7 @@ borrowRoutes.get(
   }
 );
 
-// global error handler
+// GLOBAL ERROR HANDLER
 borrowRoutes.use(
   (error: any, req: Request, res: Response, next: NextFunction) => {
     if (error.name === "ValidationError") {
@@ -88,7 +88,7 @@ borrowRoutes.use(
       });
     }
 
-    // other errors
+    // FOR HANDELING OTHER ERRORS
     res.status(400).json({
       message: error.message || "Something went wrong",
       success: false,
