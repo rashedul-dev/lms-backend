@@ -31,6 +31,7 @@ booksRoutes.get(
         sortBy = "createdAt",
         sort = "asc",
         limit = "10",
+        page = "1",
       } = req.query;
 
       const query: any = {};
@@ -40,14 +41,28 @@ booksRoutes.get(
 
       const sortOrder = sort === "desc" ? -1 : 1;
 
-      const books = await Book.find(query)
-        .sort({ [sortBy as string]: sortOrder })
-        .limit(Number(limit));
+      // pagination
 
-      res.status(201).json({
+      const skip = (Number(page) - 1) * Number(limit);
+
+      const [books, total] = await Promise.all([
+        Book.find(query)
+          .sort({ [sortBy as string]: sortOrder })
+          .skip(skip)
+          .limit(Number(limit)),
+        Book.countDocuments(query),
+      ]);
+
+      res.status(200).json({
         success: true,
-        message: "Books retrieved successfully",
         data: books,
+        message: "Books retrieved successfully",
+        meta: {
+          total,
+          page: Number(page),
+          limit: Number(limit),
+          totalPages: Math.ceil(total / Number(limit)),
+        },
       });
     } catch (error: any) {
       next(error);
