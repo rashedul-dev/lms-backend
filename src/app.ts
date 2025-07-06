@@ -10,7 +10,8 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://open-library-managment.vercel.app/",
+      "https://open-library-managment.vercel.app",
+      "https://lmsbackend-oy0ja2ucn-rasheul-devs-projects.vercel.app",
     ],
     credentials: true,
   })
